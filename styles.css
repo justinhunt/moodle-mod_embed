@@ -1,0 +1,24 @@
+
+
+/* Countdown timer. */
+#embed-completed {display: none; margin-top: 1em;}
+#embed-timer {display: none; margin-top: 1em;}
+#embed-time-left {font-weight: bold;}
+#embed-timer.timeleft15 {background: #ffffff;}
+#embed-timer.timeleft14 {background: #eeffee;}
+#embed-timer.timeleft13 {background: #ddffdd;}
+#embed-timer.timeleft12 {background: #ccffcc;}
+#embed-timer.timeleft11 {background: #bbffbb;}
+#embed-timer.timeleft10 {background: #aaffaa;}
+#embed-timer.timeleft9 {background: #99ff99;}
+#embed-timer.timeleft8 {background: #88ff88;}
+#embed-timer.timeleft7 {background: #77ff77;}
+#embed-timer.timeleft6 {background: #66ff66;}
+#embed-timer.timeleft5 {background: #55ff55;}
+#embed-timer.timeleft4 {background: #44ff44;}
+#embed-timer.timeleft3 {background: #33ff33;}
+#embed-timer.timeleft2 {background: #22ff22;}
+#embed-timer.timeleft1 {background: #11ff11;}
+#embed-timer.timeleft0 {background: #00ff00;}
+#embed-timer {text-align: center; margin-top: 1em;}
+#embed-completed {text-align: center; margin-top: 1em; background: #F4C63f;}
