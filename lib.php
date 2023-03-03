@@ -144,9 +144,7 @@ function embed_add_instance($data, $mform = null) {
     $cmid = $data->coursemodule;
 
     $data->timemodified = time();
-
-
-
+    
     if ($mform) {
         $data->content       = $data->embed['text'];
         $data->contentformat = $data->embed['format'];
@@ -455,22 +453,6 @@ function embed_dndupload_register() {
                      array('identifier' => 'text/html', 'message' => get_string('createembed', 'embed')),
                      array('identifier' => 'text', 'message' => get_string('createembed', 'embed'))
                  ));
-}
-
-/**
- * Check if our completion rules are enabled
- *
- * @param object $data the mform data
- * @return boolean true if enabled
- */
-function completion_rule_enabled($data) {
-	$enabled = (
-		$data['jscondition'] != 'none' || 
-		$data['timecondition'] != 'none' || 
-		$data['questioncondition'] != 'none');   
-		
-		return $enabled;
-
 }
 
 /**
