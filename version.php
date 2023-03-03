@@ -18,13 +18,15 @@
  * mod_embed module version information
  *
  * @package mod_embed
- * @copyright  2014 Justin Hunt (http://poodll.com)
+ * @copyright  2023 Justin Hunt (http://poodll.com)
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
 defined('MOODLE_INTERNAL') || die();
 
-$plugin->version   = 2014110400;       // The current module version (Date: YYYYMMDDXX)
+$plugin->version   = 2023030300;       // The current module version (Date: YYYYMMDDXX)
 $plugin->requires  = 2014050800;    // Requires this Moodle version
 $plugin->component = 'mod_embed';       // Full name of the plugin (used for diagnostics)
-//$plugin->cron      = 0;
+$plugin->maturity = MATURITY_BETA;
+$plugin->release = 'Version 1.0.0 (Build 2023030300)';
+

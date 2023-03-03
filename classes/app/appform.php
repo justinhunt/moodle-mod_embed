@@ -124,7 +124,7 @@ class appform extends \moodleform {
         foreach($fields as $field){
             //instructions
             $mform->addElement('text', $field, get_string($field, constants::M_COMPONENT), array('size'=>70));
-            $mform->setType($field, PARAM_TEXT);
+            $mform->setType($field, PARAM_RAW);
             $mform->addRule($field, get_string('required'), 'required', null, 'client');
         }
 

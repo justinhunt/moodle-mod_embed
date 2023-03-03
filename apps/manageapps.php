@@ -34,7 +34,7 @@ global $USER,$DB;
 
 // first get the nfo passed in to set up the page
 $moduleid= required_param('moduleid',PARAM_INT);
-$id     = optional_param('id',0, PARAM_INT);         // Course Module ID
+$id     = optional_param('id',0, PARAM_INT);         // App ID
 $action = optional_param('action','edit',PARAM_TEXT);
 
 // get the objects we need
@@ -45,10 +45,10 @@ $moduleinstance = $DB->get_record(constants::M_MODNAME, array('id' => $moduleid)
 //make sure we are logged in and can see this form
 require_login($course, false, $cm);
 $context = context_module::instance($cm->id);
-require_capability('mod/embed:manage', $context);
+require_capability('mod/embed:manageapps', $context);
 
 //set up the page object
-$PAGE->set_url('/mod/embed/app/manageapps.php', array('moduleid'=>$moduleid, 'id'=>$id));
+$PAGE->set_url('/mod/embed/apps/manageapps.php', array('moduleid'=>$moduleid, 'id'=>$id));
 $PAGE->set_title(format_string($moduleinstance->name));
 $PAGE->set_heading(format_string($course->fullname));
 $PAGE->set_context($context);
@@ -66,10 +66,7 @@ if ($id) {
 }
 
 //we always head back to the mod_embed apps page
-$redirecturl = new moodle_url('/mod/embed/app/apps.php', array('id'=>$cm->id));
-
-//prepare filemanager options
-$filemanageroptions = embed_filemanager_options($context);
+$redirecturl = new moodle_url('/mod/embed/apps/apps.php', array('id'=>$cm->id));
 
 //handle delete actions
 if($action == 'confirmdelete'){
@@ -77,7 +74,7 @@ if($action == 'confirmdelete'){
     $app_renderer = $PAGE->get_renderer(constants::M_COMPONENT,'app');
     echo $renderer->header($moduleinstance, $cm, 'apps', null, get_string('confirmappdeletetitle', constants::M_COMPONENT));
     echo $app_renderer->confirm(get_string("confirmappdelete",constants::M_COMPONENT,$app->name),
-            new moodle_url('/mod/embed/app/manageapps.php', array('action'=>'delete','moduleid'=>$moduleid,'id'=>$id)),
+            new moodle_url('/mod/embed/apps/manageapps.php', array('action'=>'delete','moduleid'=>$moduleid,'id'=>$id)),
             $redirecturl);
     echo $renderer->footer();
     return;
@@ -142,6 +139,8 @@ if ($data = $mform->get_data()) {
 //if edit mode load up the app into a data object
 if ($edit) {
     $data = $app;
+    $data->courseid=$course->id;
+    $data->moduleid = $moduleid;
 
 
 }else{
@@ -155,7 +154,7 @@ if ($edit) {
 //Set up the app type specific parts of the form data
 $apprenderer = $PAGE->get_renderer('mod_embed','app');
 $mform->set_data($data);
-$PAGE->navbar->add(get_string('edit'), new moodle_url('/mod/embed/app/apps.php', array('id'=>$moduleid)));
+$PAGE->navbar->add(get_string('edit'), new moodle_url('/mod/embed/apps/apps.php', array('id'=>$moduleid)));
 $PAGE->navbar->add(get_string('editingapp', constants::M_COMPONENT));
 $renderer = $PAGE->get_renderer('mod_embed');
 $mode='apps';

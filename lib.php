@@ -144,7 +144,7 @@ function embed_add_instance($data, $mform = null) {
     $cmid = $data->coursemodule;
 
     $data->timemodified = time();
-    
+
     if ($mform) {
         $data->content       = $data->embed['text'];
         $data->contentformat = $data->embed['format'];

@@ -40,7 +40,10 @@ $string['modulename_link'] = 'mod/embed/view';
 $string['modulenameplural'] = 'Poodll Embeds';
 $string['optionsheader'] = 'Display options';
 $string['embed-mod-embed-x'] = 'Any mod_embed module mod_embed';
-$string['embed:addinstance'] = 'Add a new mod_embed resource';
+$string['embed:addinstance'] = 'Can add a new mod_embed resource';
+$string['embed:manageapps'] = 'Can manage apps';
+$string['embed:manageattempts'] = 'Can manage attempts';
+
 $string['embed:view'] = 'View mod_embed content';
 $string['pluginadministration'] = 'mod_embed module administration';
 $string['pluginname'] = 'Poodll Embed';
@@ -68,8 +71,8 @@ $string['appcondition_custom']='custom';
 $string['appcondition_none']='No app completion';
 
 
-$string['applevelcourse']='course';
-$string['applevelcourse']='site';
+$string['applevelcourse']='Course';
+$string['applevelsite']='Site';
 $string['completed']='Completed';
 $string['timecondition']='Minimum Time Condition';
 $string['time_none']='No minimum time condition';
@@ -95,11 +98,27 @@ $string['gradeoptions_details'] = 'Set grade options here';
 $string['gradeoptions_help'] = 'Set grade options here ';
 $string['iframecode'] = 'iFrame Code';
 $string['iframecode_explanation'] = 'Paste the iframe code here';
-
+$string['apps']='Apps';
+$string['app']='App';
+$string['addapp']='Add app';
+$string['editapp']='Edit app';
+$string['deleteapp']='Delete app';
 $string['appname']='App Name';
+$string['appformtitle']='Manage Apps';
+$string['editingapp']='Editing app';
+$string['applevel']='App level';
+$string['saveapp']='Save app';
+$string['edit']='Edit';
+$string['manageapps']='Manage apps';
+$string['manageappinstructions']='Add, edit or delete apps from here';
 $string['instructions']='Instructions';
 $string['appinputs']='App Inputs';
 $string['appoutputs']='App Outputs';
 $string['embedtemplate']='Embed Template';
 $string['secretcode']='Secret Code';
+$string['timemodified']='Time modified';
+$string['actions']='Actions';
+$string['confirmappdelete']='Do you really want to delete this app?';
+$string['confirmappdeletetitle']='Confirm Delete App';
+
 

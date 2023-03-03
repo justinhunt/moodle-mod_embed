@@ -36,12 +36,11 @@ $embed = $DB->get_record(constants::M_TABLE, array('id' => $cm->instance), '*', 
 
 $apphelper = new \mod_embed\apphelper($cm);
 $apps = $apphelper->fetch_apps();
-$selectedapps = $apphelper->fetch_selected_apps();
 
 //mode is necessary for tabs
 $mode='apps';
 //Set page url before require login, so post login will return here
-$PAGE->set_url('/mod/embed/app/apps.php', array('id'=>$cm->id,'mode'=>$mode));
+$PAGE->set_url('/mod/embed/apps/apps.php', array('id'=>$cm->id,'mode'=>$mode));
 
 //require login for this page
 require_login($course, false, $cm);
@@ -59,7 +58,6 @@ echo $renderer->header($embed, $cm, $mode, null, get_string('apps', constants::M
 
 
 // We need view permission to be here
-require_capability('mod/embed:selectapps', $context);
 if (has_capability('mod/embed:manageapps', $context)){
     echo $app_renderer->add_edit_page_links($embed);
 }
@@ -67,6 +65,6 @@ if (has_capability('mod/embed:manageapps', $context)){
 
 //if we have apps, show em
 if($apps){
-	echo $app_renderer->show_apps_list($apps,$apptableid,$cm, $selectedapps);
+	echo $app_renderer->show_apps_list($apps,$apptableid,$cm);
 }
 echo $renderer->footer();

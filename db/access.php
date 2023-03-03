@@ -46,16 +46,27 @@ $capabilities = array(
         'clonepermissionsfrom' => 'moodle/course:manageactivities'
     ),
 
+    'mod/embed:manageapps' => array(
+        'riskbitmask' => RISK_XSS,
+        'captype' => 'write',
+        'contextlevel' => CONTEXT_MODULE,
+        'archetypes' => array(
+            'editingteacher' => CAP_ALLOW,
+            'manager' => CAP_ALLOW
+        ),
+        'clonepermissionsfrom' => 'moodle/course:manageactivities'
+    ),
 
-/* TODO: review public portfolio API first!
-    'mod/embed:portfolioexport' => array(
-
-        'captype' => 'read',
+    'mod/embed:manageattempts' => array(
+        'riskbitmask' => RISK_XSS,
+        'captype' => 'write',
         'contextlevel' => CONTEXT_MODULE,
         'archetypes' => array(
             'teacher' => CAP_ALLOW,
             'editingteacher' => CAP_ALLOW,
-        )
+            'manager' => CAP_ALLOW
+        ),
+        'clonepermissionsfrom' => 'moodle/course:manageactivities'
     ),
-*/
+
 );

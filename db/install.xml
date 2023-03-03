@@ -36,7 +36,7 @@
       <TABLE NAME="embed_app" COMMENT="App data">
           <FIELDS>
               <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
-              <FIELD NAME="name" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false"/>
+              <FIELD NAME="name" TYPE="char" LENGTH="255" NOTNULL="true" SEQUENCE="false"/>
               <FIELD NAME="applevel" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false"/>
               <FIELD NAME="instructions" TYPE="text" NOTNULL="false" SEQUENCE="false"/>
               <FIELD NAME="embedtemplate" TYPE="text" NOTNULL="false" SEQUENCE="false"/>
