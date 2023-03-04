@@ -84,7 +84,11 @@ $PAGE->set_activity_record($embed);
 
 
 $renderer = $PAGE->get_renderer('mod_embed');
-echo $renderer->header($embed,$cm);
+//mode is necessary for tabs
+$mode='attempts';
+
+echo $renderer->header($embed, $cm, $mode, null, get_string('attempts', 'mod_embed'));
+
 
 if (trim(strip_tags($embed->intro))) {
     echo $renderer->box_start('mod_introbox', 'embedintro');

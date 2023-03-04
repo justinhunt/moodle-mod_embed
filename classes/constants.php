@@ -20,6 +20,8 @@ class constants
     const M_APP_TABLE='embed_app';
     const M_URL='/mod/embed';
     const M_CLASS_APPSCONTAINER ='appscontainer';
+    const M_USE_DATATABLES=true;
+    const M_CLASS='mod_embed';
 
     //app level
     const M_APPLEVEL_SITE =0;
