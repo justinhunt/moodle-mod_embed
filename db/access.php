@@ -34,6 +34,14 @@ $capabilities = array(
         )
     ),
 
+    'mod/embed:submit' => array(
+        'captype' => 'read',
+        'contextlevel' => CONTEXT_MODULE,
+        'archetypes' => array(
+            'user' => CAP_ALLOW,
+        )
+    ),
+
     'mod/embed:addinstance' => array(
         'riskbitmask' => RISK_XSS,
 

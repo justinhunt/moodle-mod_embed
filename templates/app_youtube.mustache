@@ -1,0 +1,79 @@
+<div
+        data-video="{{ytv_id}}"
+        data-start="{{ytv_start}}"
+        data-end="{{ytv_end}}"
+        id="{{uniqid}}_ytplayer">
+        <!-- data-height="560" -->
+        <!-- data-width="315" -->
+</div>
+{{^element.frozen}}
+    {{#js}}
+        //<script>
+        require(['jquery', 'core/log', 'core/ajax'], function($, log, ajax) {
+          var ytv= {
+              initVideo: function (container) {
+                  var that = this;
+                  if (typeof (YT) == 'undefined' || typeof (YT.Player) == 'undefined') {
+                      if (typeof (window.deferredYTClips) == 'undefined') {
+                          window.deferredYTClips = [];
+                      }
+                      window.deferredYTClips.push(container);
+                      window.onYouTubeIframeAPIReady = function () {
+                          for (var i = 0; i < window.deferredYTClips.length && i > -1; i++) {
+                              that.loadPlayer(window.deferredYTClips[i]);
+                          }
+                      };
+
+                      $.getScript('//www.youtube.com/iframe_api');
+                  } else {
+                      that.loadPlayer(container);
+                  }
+              }, //end of init video
+
+              loadPlayer: function (container) {
+                  var that = this;
+                  var theDiv = $("#" + container);
+                  var startSeconds = theDiv.data('start');
+                  var endSeconds = theDiv.data('end');
+                  var thePlayer = new YT.Player(container, {
+                      width: theDiv.data('width'),
+                      height: theDiv.data('height'),
+                      // For a list of all parameters, see:
+                      // https://developers.google.com/youtube/player_parameters
+                      playerVars: {
+                          autoplay: 0,
+                          controls: 1,
+                          modestbranding: 0,
+                          rel: 0,
+                          showinfo: 0
+                      },
+                      events: {
+                          onReady: function (e) {
+                              var videocue = {videoId: theDiv.data('video')};
+                              if (!isNaN(startSeconds) && startSeconds > 0) {
+                                  videocue.startSeconds = startSeconds
+                              } else {
+                                  startSeconds = 0;
+                              }
+                              if (!isNaN(endSeconds) && endSeconds > 0) {
+                                  videocue.endSeconds = endSeconds;
+                              }
+                              e.target.cueVideoById(videocue);
+                          },
+                          onStateChange: function (e) {
+                                  ajax.call([{
+                                      methodname: 'mod_embed_do',
+                                      args: {contextid: self.contextid, itemdata: e.data},
+                                      done: self.callback
+                                  }]);
+                          },
+                      },
+                  });
+              } //end of load player
+          }//end of YTV
+
+            //here is where we actually do the embed
+            ytv.initVideo("{{uniqid}}_ytplayer");
+        });
+    {{/js}}
+{{/element.frozen}}

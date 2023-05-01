@@ -115,8 +115,32 @@ $formatoptions->context = $context;
 $content = format_text($content, $embed->contentformat, $formatoptions);
 echo $renderer->box($content, "generalbox center clearfix");
 
-//iFrame Embed Code
-echo $renderer->do_iframe_embed($embed);
+$apptype='youtube';
+$apptype='wordwall';
+$apptype='poodll';
+
+switch($apptype){
+    case 'youtube':
+        $tdata = ['contextid'=>$context->id,'ytv_id'=>'lXgkuM2NhYI','ytv_start'=>0,'ytv_end'=>0];
+        echo $renderer->render_from_template('mod_embed/app_youtube', $tdata);
+        break;
+    case 'wordwall':
+        ////var wwurl="https://wordwall.net/resource/12672847/game-past-simple-tense";
+        $tdata = ['contextid'=>$context->id,'wordwallurl'=>'https://wordwall.net/resource/12672847/game-past-simple-tense'];
+        echo $renderer->render_from_template('mod_embed/app_wordwall', $tdata);
+        break;
+    case 'poodll':
+        //https://russell.poodll.com/mod/readaloud/view.php?id=120&embed=1
+        $tdata = ['contextid'=>$context->id,'poodllurl'=>'https://russell.poodll.com/mod/readaloud/view.php?id=120&embed=1', 'allowurl'=>'https://russell.poodll.com'];
+        echo $renderer->render_from_template('mod_embed/app_poodll', $tdata);
+        break;
+    default:
+        //iFrame Embed Code
+        echo $renderer->do_iframe_embed($embed);
+
+}
+
+
 
 //output completed tag
 $completed = $tph->embed_fetch_completed_tag();

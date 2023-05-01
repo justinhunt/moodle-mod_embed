@@ -30,10 +30,11 @@ class external extends external_api {
      * Describes the parameters for do_complete_form webservice.
      * @return external_function_parameters
      */
-    public static function do_complete_parameters() {
+    public static function do_parameters() {
         return new external_function_parameters(
             array(
-                'contextid' => new external_value(PARAM_INT, 'The context id for the course')
+                'contextid' => new external_value(PARAM_INT, 'The context id for the activity'),
+                'itemdata' => new external_value(PARAM_RAW, 'The itemdata'),
             )
         );
     }
@@ -50,20 +51,19 @@ class external extends external_api {
      * @throws \required_capability_exception
      * @throws \restricted_context_exception
      */
-    public static function do_complete($contextid) {
+    public static function do($contextid, $itemdata) {
         global $CFG, $DB, $USER;
 
         // We always must pass webservice params through validate_parameters.
-        $params = self::validate_parameters(self::do_complete_parameters(),
-            ['contextid' => $contextid]);
+        $params = self::validate_parameters(self::do_parameters(),
+            ['contextid' => $contextid, 'itemdata'=>$itemdata]);
 
-        $context = \context::instance_by_id($params['contextid'], MUST_EXIST);
+        $context = \context_module::instance_by_id($params['contextid'], MUST_EXIST);
 
         // We always must call validate_context in a webservice.
         self::validate_context($context);
-        require_capability('moodle/course:managegroups', $context);
+        require_capability('mod/embed:submit', $context);
 
-        $context = \context::instance_by_id($params['contextid'], MUST_EXIST);
         $cm = get_coursemodule_from_id('', $context->instanceid, 0, false, MUST_EXIST);
         $course = $DB->get_record('course', array('id'=>$cm->course), '*', MUST_EXIST);
         $moduleinstance = $DB->get_record(constants::M_TABLE, array('id' => $cm->instance), '*', MUST_EXIST);
@@ -140,7 +140,7 @@ class external extends external_api {
      * @return external_value
      * @since Moodle 3.0
      */
-    public static function do_complete_returns() {
+    public static function do_returns() {
         return new external_value(PARAM_INT, 'grade id');
     }
 

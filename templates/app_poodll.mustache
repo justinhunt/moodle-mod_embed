@@ -1,0 +1,30 @@
+
+<div id="{{uniqid}}_poodll" class="mod_embed_poodllcontainer">
+    <iframe id="contentframe" height="600px" width="100%" src="{{poodllurl}}"
+            allow="microphone {{allowurl}}; camera {{allowurl}}; geolocation {{allowurl}}; midi {{allowurl}}; encrypted-media {{allowurl}}; autoplay {{allowurl}}"
+            allowfullscreen="1">
+    </iframe>
+
+</div>
+{{^element.frozen}}
+    {{#js}}
+        //<script>
+        require(['jquery', 'core/log', 'core/ajax'], function($, log, ajax) {
+          var app= {
+              init: function (container) {
+                  var that = this;
+
+                  that.registerEvents();
+
+              }, //end of init video
+
+              registerEvents: function (container) {
+                  var that = this;
+              } //end of register events
+          }//
+
+            //here is where we actually do the embed
+            app.init("{{uniqid}}_poodll");
+        });
+    {{/js}}
+{{/element.frozen}}

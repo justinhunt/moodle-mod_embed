@@ -1,0 +1,39 @@
+
+<div id="{{uniqid}}_wordwall" class="mod_embed_wordwallcontainer">
+
+</div>
+{{^element.frozen}}
+    {{#js}}
+        //<script>
+        require(['jquery', 'core/log', 'core/ajax'], function($, log, ajax) {
+          var app= {
+              init: function (container) {
+                  var that = this;
+                  //var wwurl="https://wordwall.net/resource/12672847/game-past-simple-tense";
+                  var oembedurl = "https://wordwall.net/api/oembed?url=" + encodeURIComponent("{{wordwallurl}}") + "&format=json";
+                  $.ajax({
+                      url: oembedurl,
+                      crossDomain: true,
+                      type: 'GET',
+                      error: function(xhr, status, error) {
+                          console.log(theurl);
+                          console.log(error);
+                      },
+                      success: function(data) {
+                          $("#{{uniqid}}_wordwall").html(data.html);
+                      }
+                  });
+                  that.registerEvents();
+
+              }, //end of init video
+
+              registerEvents: function (container) {
+                  var that = this;
+              } //end of register events
+          }//
+
+            //here is where we actually do the embed
+            app.init("{{uniqid}}_wordwall");
+        });
+    {{/js}}
+{{/element.frozen}}

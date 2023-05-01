@@ -32,25 +32,48 @@ define(['jquery', 'core/log','core/ajax'], function($, log,ajax) {
                   return;
               }
 
-              if (event.data.hasOwnProperty(itemdata.smartframetypekey)){
-                  switch (event.data.type) {
-                      case itemdata.smartframegradekey:
+              if (event.data.hasOwnProperty(itemdata.typekey)){
+                  // note that there is no "break" and a single event can grade, complete and report
+                  switch (event.data[itemdata.typekey]) {
+                      case itemdata.gradekey:
                           //push the grades back to the server
-                      case itemdata.smartframecompletekey:
+                          ajax.call([{
+                              methodname: 'mod_embed_do_grade',
+                              args: {contextid: self.contextid, itemdata: itemdata},
+                              done: self.callback
+                          }]);
+                      case itemdata.completekey:
                           //push the completion back to the server
-                      case itemdata.smartframereportablekey:
+                          ajax.call([{
+                              methodname: 'mod_embed_do_complete',
+                              args: {contextid: self.contextid, itemdata: itemdata},
+                              done: self.callback
+                          }]);
+                      case itemdata.reportkey:
                         //push the reportable data back to the server
+                          /*
                           var savedata = {}
                           $.each(itemdata.smartframedata, function (skey, svalue) {
                               if (event.data.hasOwnProperty(skey)) {
                                   savedata[skey] = event.data[skey];
                               }
                           });
+                          */
+                          ajax.call([{
+                              methodname: 'mod_embed_do_report',
+                              args: {contextid: self.contextid, itemdata: itemdata},
+                              done: self.callback
+                          }]);
+
                   }
               }
 
           });
-      }//end of register events function
+      },//end of register events function
+
+      callback: function (itemdata) {
+          //probably override this
+      },
 
   };//end of return
 
