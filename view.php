@@ -117,7 +117,9 @@ echo $renderer->box($content, "generalbox center clearfix");
 
 $apptype='youtube';
 $apptype='wordwall';
+$apptype='zengengo';
 $apptype='poodll';
+
 
 switch($apptype){
     case 'youtube':
@@ -131,7 +133,13 @@ switch($apptype){
         break;
     case 'poodll':
         //https://russell.poodll.com/mod/readaloud/view.php?id=120&embed=1
-        $tdata = ['contextid'=>$context->id,'poodllurl'=>'https://russell.poodll.com/mod/readaloud/view.php?id=120&embed=1', 'allowurl'=>'https://russell.poodll.com'];
+        //https://vbox.poodll.com/moodle/mod/minilesson/view.php?id=3&embed=1
+        $tdata = ['contextid'=>$context->id,'poodllurl'=>'https://vbox.poodll.com/moodle/mod/minilesson/view.php?id=3&embed=1', 'allowurl'=>'https://vbox.poodll.com'];
+        echo $renderer->render_from_template('mod_embed/app_poodll', $tdata);
+        break;
+    case 'zengengo':
+        //https://app.zengengo.com/assignments/multi_choice/submit-multi_choice.php?id=XWGLG
+        $tdata = ['contextid'=>$context->id,'poodllurl'=>'https://app.zengengo.com/assignments/multi_choice/submit-multi_choice.php?id=XWGLG', 'allowurl'=>'https://app.zengengo.com'];
         echo $renderer->render_from_template('mod_embed/app_poodll', $tdata);
         break;
     default:
