@@ -1,0 +1,32 @@
+
+<div id="{{uniqid}}_zengengo" class="mod_embed_zengengocontainer">
+    <iframe data-embed-type="assignment" class="zgg-embed"
+            allow="camera {{allowurl}}; microphone {{allowurl}}; autoplay {{allowurl}}; fullscreen"
+            style="width:100%;height:800px"
+            src="{{zengengourl}}">
+
+    </iframe>
+
+</div>
+{{^element.frozen}}
+    {{#js}}
+        //<script>
+        require(['jquery', 'core/log', 'core/ajax'], function($, log, ajax) {
+          var app= {
+              init: function (container) {
+                  var that = this;
+
+                  that.registerEvents();
+
+              }, //end of init video
+
+              registerEvents: function (container) {
+                  var that = this;
+              } //end of register events
+          }//
+
+            //here is where we actually do the embed
+            app.init("{{uniqid}}_poodll");
+        });
+    {{/js}}
+{{/element.frozen}}
